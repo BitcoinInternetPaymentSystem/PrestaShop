@@ -9,7 +9,9 @@ $hash = hash('sha512', $BIPS['transaction']['hash'] . Configuration::get('BIPS_S
 if ($BIPS['hash'] == $hash && $BIPS['status'] == 1)
 {
 	$BIPS = new BIPS();
-	$BIPS->writeDetails($_POST['custom']['order_id'], $_POST['custom']['cart_id'], $_POST['invoice'], $_POST['transaction']['hash'], $_POST['transaction']['address']);
+
+	$BIPS->validateOrder($_POST['custom']['cart_id'], Configuration::get('PS_OS_PAYMENT'), $_POST['fiat']['amount'], $BIPS->displayName, null, array(), null, false);
+	$BIPS->writeDetails($BIPS->currentOrder, $_POST['custom']['cart_id'], $_POST['invoice'], $_POST['transaction']['hash'], $_POST['transaction']['address']);
 }
 
 exit;
