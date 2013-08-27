@@ -8,7 +8,7 @@
 		{
 			$this->name = 'BIPS';
 			$this->tab = 'payments_gateways';
-			$this->version = '0.1';
+			$this->version = '0.2';
 
 			$this->currencies = true;
 			$this->currencies_mode = 'checkbox';
