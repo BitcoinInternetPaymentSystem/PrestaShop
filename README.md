@@ -32,9 +32,9 @@ System Requirements
   
 Configuration Instructions
 ==========================
-  1. Upload files to your PrestaShop installation.
+    1. Upload files to your PrestaShop installation.
 
-  2. Go to your PrestaShop administration.
+    2. Go to your PrestaShop administration.
 Modules -> Payment and Gateways in the Category list -> "BIPS" click [Install]
-
-  3. In module settings "Invoice API key" <- set your BIPS Invoice API key.
+  
+    3. In module settings "Invoice API key" <- set your BIPS Invoice API key.
