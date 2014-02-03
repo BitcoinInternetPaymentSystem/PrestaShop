@@ -38,3 +38,4 @@ Configuration Instructions
     Click on Payments and Gateways in the Categories list, find BIPS and click [Install]
   
     3. In module settings "Invoice API key" <- set your BIPS Invoice API key.
+    4. In module settings "IPN secret" <- set your BIPS Instant Payment Notification secret.
