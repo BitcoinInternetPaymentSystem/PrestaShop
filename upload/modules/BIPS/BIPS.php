@@ -8,7 +8,7 @@
 		{
 			$this->name = 'BIPS';
 			$this->tab = 'payments_gateways';
-			$this->version = '0.2';
+			$this->version = '0.3';
 
 			$this->currencies = true;
 			$this->currencies_mode = 'checkbox';
@@ -93,14 +93,7 @@
 		private function _setBIPSSubscription()
 		{
 			$this->_html .= '
-			<div style="float: right; width: 440px; height: 150px; border: dashed 1px #666; padding: 8px; margin-left: 12px;">
-				<h2>'.$this->l('Opening your BIPS account').'</h2>
-				<div style="clear: both;"></div>
-				<p>'.$this->l('When opening your BIPS account by clicking on the following image, you are helping us significantly to improve the BIPS Solution:').'</p>
-				<p style="text-align: center;"><a href="https://bips.me/"><img src="../modules/BIPS/prestashop_bips.png" alt="PrestaShop & BIPS" style="margin-top: 12px;" /></a></p>
-				<div style="clear: right;"></div>
-			</div>
-			<b>'.$this->l('This module allows you to accept payments in bitcoin via BIPS.').'</b><br /><br />
+			<b>'.$this->l('This module allows you to accept payments in bitcoin with BIPS.').'</b><br /><br />
 			'.$this->l('If the client chooses this payment mode, your BIPS account will be automatically credited.').'<br />
 			'.$this->l('You need to configure your BIPS account before using this module.').'
 			<div style="clear:both;">&nbsp;</div>';
@@ -133,20 +126,15 @@
 		private function _getSettingsTabHtml()
 		{
 			$html = '
-			<h2>'.$this->l('Settings').'</h2>
-			<label>'.$this->l('API key').':</label>
+			<label>'.$this->l('Invoice API key').':</label>
 			<div class="margin-form">
-				<input type="password" name="apikey_bips" value="'.htmlentities(Tools::getValue('apikey_bips', Configuration::get('BIPS_APIKEY')), ENT_COMPAT, 'UTF-8').'" size="30" />
+				<input type="text" name="apikey_bips" value="'.htmlentities(Tools::getValue('apikey_bips', Configuration::get('BIPS_APIKEY')), ENT_COMPAT, 'UTF-8').'" size="40" />
 			</div>
 			<label>'.$this->l('IPN secret').':</label>
 			<div class="margin-form">
-				<input type="password" name="secret_bips" value="'.htmlentities(Tools::getValue('secret_bips', Configuration::get('BIPS_SECRET')), ENT_COMPAT, 'UTF-8').'" size="40" />
+				<input type="text" name="secret_bips" value="'.htmlentities(Tools::getValue('secret_bips', Configuration::get('BIPS_SECRET')), ENT_COMPAT, 'UTF-8').'" size="40" />
 			</div>
-			<br /><br />
-			<h3>' . $this->l('Please copy this to Merchant Callback URL in BIPS account.') . '</h3>
-			' . (Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'modules/'.$this->name.'/ipn.php' . '
-
-			<p class="center"><input class="button" type="submit" name="submitBIPS" value="'.$this->l('Save settings').'" /></p>';
+			<p><input class="button" type="submit" name="submitBIPS" value="'.$this->l('Save settings').'" /></p>';
 			return $html;
 		}
 
@@ -209,7 +197,7 @@
 			curl_setopt_array($ch, array(
 			CURLOPT_URL => 'https://bips.me/api/v1/invoice',
 			CURLOPT_USERPWD => Configuration::get('BIPS_APIKEY'),
-			CURLOPT_POSTFIELDS => 'price=' . number_format($cart->getOrderTotal(true), 2, '.', '') . '&currency=' . $currency . '&item=Cart&custom=' . json_encode(array('cart_id' => $cart->id, 'returnurl' => rawurlencode((Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'order-confirmation.php?id_cart='.$cart->id), 'cancelurl' => rawurlencode((Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'order.php'))),
+			CURLOPT_POSTFIELDS => 'price=' . number_format($cart->getOrderTotal(true), 2, '.', '') . '&currency=' . $currency . '&item=Cart&custom=' . json_encode(array('cart_id' => $cart->id, 'returnurl' => rawurlencode((Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'order-confirmation.php?id_cart='.$cart->id), 'callbackurl' => rawurlencode((Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'modules/'.$this->name.'/ipn.php'))),
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_SSL_VERIFYHOST => 0,
 			CURLOPT_SSL_VERIFYPEER => 0,
