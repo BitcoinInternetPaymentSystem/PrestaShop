@@ -19,17 +19,19 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 THE SOFTWARE.
 
 About
-	Bitcoin payment via BIPS for PrestaShop.
+=====
++ Bitcoin payment via BIPS for PrestaShop.
++ Version 0.2
 
-Version 0.2
-	
-System Requirements:
-	BIPS API key
-	PrestaShop
-	Curl PHP Extension
-	JSON Encode
+System Requirements
+===================
++ BIPS API key
++ PrestaShop
++ Curl PHP Extension
++ JSON Encode
   
-Configuration Instructions:
+Configuration Instructions
+==========================
 	1. Upload files to your PrestaShop installation.
 	2. Go to your PrestaShop administration. Modules -> Payments & Gateways -> "BIPS" click [Install]
 	3. Go to your PrestaShop administration. Modules -> Payments & Gateways -> "BIPS" click [Configure]
