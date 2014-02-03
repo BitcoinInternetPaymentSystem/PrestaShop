@@ -33,9 +33,6 @@ System Requirements
 Configuration Instructions
 ==========================
 	1. Upload files to your PrestaShop installation.
-	2. Go to your PrestaShop administration. Modules -> Payments & Gateways -> "BIPS" click [Install]
-	3. Go to your PrestaShop administration. Modules -> Payments & Gateways -> "BIPS" click [Configure]
-	4. In BIPS Merchant IPN Callback URL, enter the provided link from configure section of BIPS PrestaShop Payment Module. http://YOUR_PRESTASHOP_URL/modules/BIPS/ipn.php
-	5. Enter a strong IPN secret just below.
-	6. In module settings "API key" <- set your BIPS API key.
-	7. In module settings "IPN secret" <- set your BIPS IPN secret.
+	2. Go to your PrestaShop administration. Modules -> Payment -> "BIPS" click [Install]
+	3. Go to your PrestaShop administration. Modules -> Payment -> "BIPS" click [Configure]
+	4. In module settings "API key" <- set your BIPS Invoice API key.
