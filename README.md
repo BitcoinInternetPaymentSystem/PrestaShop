@@ -39,3 +39,7 @@ Configuration Instructions
   
     3. In module settings "Invoice API key" <- set your BIPS Invoice API key.
     4. In module settings "IPN secret" <- set your BIPS Instant Payment Notification secret.
+
+### Tested with:
+
++ PrestaShop™ 1.5.6.0
