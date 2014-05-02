@@ -21,7 +21,7 @@ THE SOFTWARE.
 About
 =====
 + Bitcoin payment via BIPS for PrestaShop.
-+ Version 0.3
++ Version 0.4
 
 System Requirements
 ===================
