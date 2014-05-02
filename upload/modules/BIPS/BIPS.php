@@ -8,7 +8,7 @@
 		{
 			$this->name = 'BIPS';
 			$this->tab = 'payments_gateways';
-			$this->version = '0.3';
+			$this->version = '0.4';
 
 			$this->currencies = true;
 			$this->currencies_mode = 'checkbox';
@@ -197,7 +197,7 @@
 			curl_setopt_array($ch, array(
 			CURLOPT_URL => 'https://bips.me/api/v1/invoice',
 			CURLOPT_USERPWD => Configuration::get('BIPS_APIKEY'),
-			CURLOPT_POSTFIELDS => 'price=' . number_format($cart->getOrderTotal(true), 2, '.', '') . '&currency=' . $currency . '&item=Cart&custom=' . json_encode(array('cart_id' => $cart->id, 'returnurl' => rawurlencode((Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'order-confirmation.php?id_cart='.$cart->id), 'callbackurl' => rawurlencode((Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'modules/'.$this->name.'/ipn.php'))),
+			CURLOPT_POSTFIELDS => 'price=' . number_format($cart->getOrderTotal(true), 2, '.', '') . '&currency=' . $currency . '&item=Cart&custom=' . json_encode(array('cart_id' => $cart->id, 'returnurl' => rawurlencode((Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'order-confirmation?id_cart='.$cart->id), 'cancelurl' => rawurlencode((Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__), 'callbackurl' => rawurlencode((Configuration::get('PS_SSL_ENABLED') ? 'https://' : 'http://').htmlspecialchars($_SERVER['HTTP_HOST'], ENT_COMPAT, 'UTF-8').__PS_BASE_URI__.'modules/'.$this->name.'/ipn.php'))),
 			CURLOPT_RETURNTRANSFER => true,
 			CURLOPT_SSL_VERIFYHOST => 0,
 			CURLOPT_SSL_VERIFYPEER => 0,
