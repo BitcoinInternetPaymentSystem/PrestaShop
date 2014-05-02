@@ -26,7 +26,7 @@ About
 System Requirements
 ===================
 + BIPS API key
-+ PrestaShop 1.5.x
++ PrestaShop 1.6.x
 + Curl PHP Extension
 + JSON Encode
   
@@ -42,4 +42,4 @@ Configuration Instructions
 
 ### Tested with:
 
-+ PrestaShop™ 1.5.6.0
++ PrestaShop™ 1.6.0.6
